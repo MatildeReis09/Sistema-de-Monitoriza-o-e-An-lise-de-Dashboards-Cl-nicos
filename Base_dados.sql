@@ -2,7 +2,7 @@
 CREATE TABLE Person (
 id serial primary key,
 name varchar (200) NOT NULL, 
-date_of_birth Date, 
+age Date, 
 sex varchar
 );
 
@@ -33,3 +33,4 @@ message TEXT,
 CONSTRAINT FK_read_id FOREIGN KEY (read_id) REFERENCES Read_data (id)
 );
 
+-- trigger de alertas 
