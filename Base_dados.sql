@@ -1,6 +1,7 @@
 
 CREATE TABLE Person (
-id_person primary key,
+id_person serial primary key,
+id_pacient int, 
 name varchar (200), 
 age Date, 
 sex varchar,
