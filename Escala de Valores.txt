@@ -4,18 +4,24 @@ Escala de Valores :
 Glicose ( em jejum) : 
 
 Hipoglicemia- <= 70 mg/dl
-Pré-diabetes - >100 <125 mg/dl
+falta de açucar no sangue para funcionar bem
+
 Normal- <100 mg/dl
+
+Hipoglicémia (
+Pré-diabetes - 100 a 125 mg/dl
 Diabetes- >126 mg/dl
 
+)
 
 Manter a glicose em níveis saudáveis é crucial para prevenir complicações de saúde, como o diabetes.
 Valores alterados requerem acompanhamento médico para investigar a causa e definir o tratamento, que pode incluir mudanças na alimentação e estilo de vida.
 
+
 Creatina: 
 
 Homens adultos- >0,7 e <1,3 mg/dl
-Muleres adultas - >0,6 a >1,2 mg/dl 
+Mulheres adultas - >0,6 a >1,2 mg/dl 
 
 Crianças (1-18)- >0,4 a <0,9 mg/dl 
 
@@ -23,10 +29,18 @@ Crianças (1-18)- >0,4 a <0,9 mg/dl
 A creatinina é um indicador da função dos rins; valores aumentados podem sinalizar problemas renais.
 Idosos podem apresentar valores mais baixos, enquanto pessoas com muita massa muscular podem ter níveis ligeiramente superiores ao normal sem indicar doença.
 
-Tensão Arterial:
 
+Tensão Arterial:
 
 Hipotensos- sistólica ≤ 90 ou diastólica ≤ 60
 Hipertensos- sistólica ≥ 140 ou diastólica ≥ 90
 
 A meta para pessoas com diabetes ou doença renal crónica costuma ser inferior a 130/80 mmHg.
+
+
+
+Ligação - 
+
+rins doentes refletem alteraçoes na glicose, pois doenças renais podem causar hipoglicemia ( elimina de forma deficitaria de insulida) e dificulta o controlo de açucar. 
+um nivel de glicose alta mas com valores de creatina normal, existe a possibilidade de existir diabetes mas sem qualquer tipo de lesão renal. 
+Mas numa situação com glicose alta em conjunto com valores de creatina elevada já refelte suspeitas de complicaçoes renais derivado da diabetes.
