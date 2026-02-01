@@ -3,7 +3,9 @@
 Tecnologias Utilizadas:
 
 Base de Dados - PostgreSQL ( Modelação e Triggers)
+
 Linguagem - Python ( Pandas , ETL e análise preditiva)
+
 BI - Power BI/Excel ( Dashboards de apoio à decisão)
 
 
