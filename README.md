@@ -2,18 +2,15 @@
 
 Tecnologias Utilizadas:
 
-Base de Dados - PostgreSQL ( Modelação e Triggers)
-
-Linguagem - Python ( Pandas , ETL e análise preditiva)
-
-BI - Power BI/Excel ( Dashboards de apoio à decisão)
-
+Base de Dados - PostgreSQL ( Modelação e Triggers) 
+Linguagem - Python ( Pandas , ETL e análise preditiva) 
+BI - Power BI/Excel ( Dashboards de apoio à decisão) 
 
 
 1- Requisitos 
 
--Python
--PostgreSQL
+-Python 
+-PostgreSQL 
 -Power BI 
 
 2- Base de Dados (SQL)
@@ -24,6 +21,8 @@ BI - Power BI/Excel ( Dashboards de apoio à decisão)
 Dentro da pasta do projeto, no ambiente virtual abrir o terminal e instalar as bibliotecas necessárias
 
 'pip install kagglehub pandas psycopg2 sqlalchemy'
+
+DataSet Utilizado - //www.kaggle.com/datasets/uom190346a/synthetic-clinical-tabular-dataset/code
 
 4- Processo ETL
 
