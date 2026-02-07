@@ -32,3 +32,44 @@ cur = conn.cursor()
 print ("aqui , vamos começar a popular")
 
 for index, row in df.iterrows():
+    #calcular a data de nascimento aproximada com a idade da base de dados
+    dob= datetime.now() -timedelta(days= int (row['age'])*365.25)
+    #365.25 é para compensar anos bissextos
+
+    cur.execute(
+        #inserir dados na tabela de person
+        """INSERT INTO Person (id_pacient, name, birth_date, sex, bmi)
+        VALUES (%s,%s,%s,%s,%s) RETURNING id_person""",
+        (int (row['patient_id']), f"Paciente {int (row['patient_id'])}", dob.date(), row['sex'], float(row['bmi']))
+    )
+
+    person_id = cur.fetchone()[0]#guarda id interno (chaves estrangueiras)
+
+    cur.execute(
+        """INSERT INTO Consult (pacient_id, consult_date, diagnosis)
+        VALUES (%s,%s,%s) RETURNING id""",
+        (person_id, datetime.now().date(), row['diagnosis'])
+    )
+    consult_id= cur.fetchone()[0]
+
+    leituras = [
+        ('glucose', float(row['glucose']), 'mg/dl'),
+        ('creatinine', float(row['creatinine']),'mg/dl'),
+        ('cholesterol',float(row['cholesterol']),'mg/dl')
+    ]
+
+    for tipo, valor, unid in leituras : 
+        cur.execute(
+            """INSERT INTO Read_data (pacient_id, consult_id, read_type, value, unid)
+            VALUES(%s,%s,%s,%s,%s)""",
+            (person_id, consult_id, tipo, valor, unid)
+        )
+
+    conn.commit()
+
+cur.close()
+conn.close()
+
+print("população concluida")
+
+

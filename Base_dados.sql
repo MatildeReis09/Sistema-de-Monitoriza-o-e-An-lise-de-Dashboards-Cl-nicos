@@ -1,9 +1,10 @@
 
+
 CREATE TABLE Person (
 id_person serial primary key,
 id_pacient int, 
 name varchar (200), 
-age Date, 
+birth_date Date, 
 sex varchar,
 BMI decimal(5,2)
 );
@@ -70,11 +71,16 @@ elseif new.read_type = 'creatinine' then
 
 if (p_sex = 'Female' and new.value >1,2) or (p_sex= 'Male' and new.value > 1,3) then 
 insert into Alert ( read_type, message)
-value ( new.id, 'Atenção, Nivéis de Creatina elevados')
+value ( new.id, 'Atenção, Nivéis de Creatina elevados (' || new.value|| 'mg/dl)');
 
 end if;
 
+elseif new.read_type = 'cholesterol' and New.value > 200 then
+insert into Alert (read_id, message)
+value( new.id, 'Atenção,  Nivéis de Colesterol Elevado('|| New.value|| 'mg/dl)');
+
 end if; 
+
 Return new;
 end;
 $$Language plpgsql;
