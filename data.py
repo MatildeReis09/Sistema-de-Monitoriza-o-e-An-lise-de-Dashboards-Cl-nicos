@@ -67,7 +67,7 @@ for index, row in df.iterrows():
 
     for tipo, valor, unid in leituras : 
         cur.execute(
-            """INSERT INTO Read_data (pacient_id, consult_id, read_type, value, unid, data_time)
+            """INSERT INTO Read_data (pacient_id, consult_id, read_type, value, unid, date_time)
             VALUES(%s,%s,%s,%s,%s,%s)""",
             (person_id, consult_id, tipo, valor, unid, data_consult)
         )

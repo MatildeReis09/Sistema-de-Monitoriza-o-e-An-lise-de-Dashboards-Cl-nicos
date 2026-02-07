@@ -55,7 +55,7 @@ insert into Alert (read_id, message)
 values (new.id, 'Atenção, Hipoglicémia Detetada ('|| New.value|| 'mg/dl)');
 
 elseif 
-new.read_type = 'glucose' and New.value >= 100 and New.values <= 125 then 
+new.read_type = 'glucose' and New.value >= 100 and New.value <= 125 then 
 insert into Alert ( read_id, message)
 values ( new.id, 'Atenção, Pré-Diabetes ('|| New.value||' mg/dl');
 
