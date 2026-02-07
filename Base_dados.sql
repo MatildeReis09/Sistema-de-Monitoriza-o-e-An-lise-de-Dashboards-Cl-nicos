@@ -14,8 +14,8 @@ CREATE TABLE Consult(
 id serial primary key,
 pacient_id int, 
 consult_date DATE,
-diagnosis varchar(20)
-CONSTRAINT FK_pacient_id FOREIGN KEY (pacient_id) REFERENCES Person (id_person)
+diagnosis varchar(200),
+CONSTRAINT FK_pacient_id  FOREIGN KEY (pacient_id) REFERENCES Person (id_person)
 );
 
 CREATE TABLE Read_data(
@@ -25,7 +25,7 @@ consult_id int,
 read_type varchar(200),
 unid varchar(20),
 value decimal(10,2),
-date_time TIMESTAMP default current_timestamp,
+date_time TIMESTAMP,
 CONSTRAINT FK_pacient_id FOREIGN KEY (pacient_id) REFERENCES Person (id_person),
 CONSTRAINT FK_consult_id FOREIGN KEY (consult_id) REFERENCES Consult (id)
 );
@@ -52,32 +52,32 @@ New.read_type = 'glucose' Then
 
 if New.value <= 70 then
 insert into Alert (read_id, message)
-value (new.id, 'Atenção, Hipoglicémia Detetada ('|| New.value|| 'mg/dl)');
+values (new.id, 'Atenção, Hipoglicémia Detetada ('|| New.value|| 'mg/dl)');
 
 elseif 
-new.read_type = 'glucose' and New.value >100 & < 125 then 
+new.read_type = 'glucose' and New.value >= 100 and New.values <= 125 then 
 insert into Alert ( read_id, message)
-value ( new.id, 'Atenção, Pré-Diabetes ('|| new.value||' mg/dl');
+values ( new.id, 'Atenção, Pré-Diabetes ('|| New.value||' mg/dl');
 
 elseif
-new.read_type = 'glucose' and New.value > 126 then
+new.read_type = 'glucose' and New.value >= 126 then
 insert into Alert ( read_id, message)
-value ( new.id, 'Atenção, Hiperglicémia Detetada (Diabetes) (' || new.value|| 'mg/dl)');
+values ( new.id, 'Atenção, Hiperglicémia Detetada (Diabetes) (' || New.value|| 'mg/dl)');
 
 end if; 
 
 -- alertas para valores de creatina 
 elseif new.read_type = 'creatinine' then 
 
-if (p_sex = 'Female' and new.value >1,2) or (p_sex= 'Male' and new.value > 1,3) then 
-insert into Alert ( read_type, message)
-value ( new.id, 'Atenção, Nivéis de Creatina elevados (' || new.value|| 'mg/dl)');
+if (p_sex = 'Female' and new.value >1.2) or (p_sex= 'Male' and new.value > 1.3) then 
+insert into Alert ( read_id, message)
+values ( new.id, 'Atenção, Nivéis de Creatina elevados (' || New.value|| 'mg/dl)');
 
 end if;
 
 elseif new.read_type = 'cholesterol' and New.value > 200 then
 insert into Alert (read_id, message)
-value( new.id, 'Atenção,  Nivéis de Colesterol Elevado('|| New.value|| 'mg/dl)');
+values ( new.id, 'Atenção,  Nivéis de Colesterol Elevado('|| New.value|| 'mg/dl)');
 
 end if; 
 

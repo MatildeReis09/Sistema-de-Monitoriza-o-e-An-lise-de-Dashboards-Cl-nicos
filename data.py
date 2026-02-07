@@ -1,6 +1,8 @@
 import kagglehub
 import pandas as pd 
 import os
+from faker import Faker #para popular dados que o excel não fornece
+import random
 from datetime import datetime, timedelta
 import psycopg2
 
@@ -29,9 +31,14 @@ conn = psycopg2.connect(
 
 cur = conn.cursor()
 # cursor - mensageiro que faz o caminho obter e entregar a informação
+fake = Faker('pt_PT')#dados em Portugues
+
 print ("aqui , vamos começar a popular")
 
 for index, row in df.iterrows():
+
+    nome = fake.name() #gerar nome de paciente
+    data_consult = fake.date_between(start_date='-1y', end_date= 'today') #gerar dada real de consulta (desde o ano anteriro ate agora)
     #calcular a data de nascimento aproximada com a idade da base de dados
     dob= datetime.now() -timedelta(days= int (row['age'])*365.25)
     #365.25 é para compensar anos bissextos
@@ -40,7 +47,7 @@ for index, row in df.iterrows():
         #inserir dados na tabela de person
         """INSERT INTO Person (id_pacient, name, birth_date, sex, bmi)
         VALUES (%s,%s,%s,%s,%s) RETURNING id_person""",
-        (int (row['patient_id']), f"Paciente {int (row['patient_id'])}", dob.date(), row['sex'], float(row['bmi']))
+        (int (row['patient_id']), nome, dob.date(), row['sex'], float(row['bmi']))
     )
 
     person_id = cur.fetchone()[0]#guarda id interno (chaves estrangueiras)
@@ -48,7 +55,7 @@ for index, row in df.iterrows():
     cur.execute(
         """INSERT INTO Consult (pacient_id, consult_date, diagnosis)
         VALUES (%s,%s,%s) RETURNING id""",
-        (person_id, datetime.now().date(), row['diagnosis'])
+        (person_id,data_consult ,row['diagnosis'])
     )
     consult_id= cur.fetchone()[0]
 
@@ -60,12 +67,12 @@ for index, row in df.iterrows():
 
     for tipo, valor, unid in leituras : 
         cur.execute(
-            """INSERT INTO Read_data (pacient_id, consult_id, read_type, value, unid)
-            VALUES(%s,%s,%s,%s,%s)""",
-            (person_id, consult_id, tipo, valor, unid)
+            """INSERT INTO Read_data (pacient_id, consult_id, read_type, value, unid, data_time)
+            VALUES(%s,%s,%s,%s,%s,%s)""",
+            (person_id, consult_id, tipo, valor, unid, data_consult)
         )
 
-    conn.commit()
+conn.commit()
 
 cur.close()
 conn.close()
